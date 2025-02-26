@@ -47,6 +47,14 @@ En webbapp där användare får en ny miljöutmaning varje dag. Genom att genomf
 ### 📂 Arkiv
 - Användaren kan se tidigare utmaningar.
 - Möjlighet att slutföra gamla utmaningar om de fortfarande är relevanta.
+✅ Features:
+Displays a monthly calendar.
+Allows users to click on a date to view past challenges.
+Responsive and styled with Bootstrap 5.
+✅ How It Works
+Users can navigate months with left (❮) and right (❯) buttons.
+Clicking a date highlights it and shows a placeholder for past challenges.
+Styled with Bootstrap for a clean UI.
 
 #### User Stories
 - **Som en** användare, **vill jag** kunna se tidigare utmaningar, **så att** jag kan följa min historik.
