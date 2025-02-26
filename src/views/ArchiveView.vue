@@ -7,13 +7,25 @@ const selectedDate = ref(null)
 const currentMonth = ref(today.getMonth())
 const currentYear = ref(today.getFullYear())
 
-// Generate days in the current month
+// Update the month while handling year changes
+const changeMonth = (step) => {
+  currentMonth.value += step
+  if (currentMonth.value < 0) {
+    currentMonth.value = 11 // Wrap to December
+    currentYear.value -= 1 // Decrease year
+  } else if (currentMonth.value > 11) {
+    currentMonth.value = 0 // Wrap to January
+    currentYear.value += 1 // Increase year
+  }
+}
+
+// Generate days in the selected month
 const daysInMonth = computed(() => {
-  const date = new Date(currentYear.value, currentMonth.value, 1)
+  const firstDay = new Date(currentYear.value, currentMonth.value, 1)
+  const lastDay = new Date(currentYear.value, currentMonth.value + 1, 0)
   const days = []
-  while (date.getMonth() === currentMonth.value) {
-    days.push(new Date(date))
-    date.setDate(date.getDate() + 1)
+  for (let i = 1; i <= lastDay.getDate(); i++) {
+    days.push(new Date(currentYear.value, currentMonth.value, i))
   }
   return days
 })
@@ -31,7 +43,7 @@ const selectDate = (date) => {
 
     <div class="calendar-container">
       <div class="calendar-header">
-        <button @click="currentMonth--" class="btn btn-sm btn-outline-primary">❮</button>
+        <button @click="changeMonth(-1)" class="btn btn-sm btn-outline-primary">❮</button>
         <h3>
           {{
             new Date(currentYear, currentMonth).toLocaleString('default', {
@@ -40,7 +52,7 @@ const selectDate = (date) => {
             })
           }}
         </h3>
-        <button @click="currentMonth++" class="btn btn-sm btn-outline-primary">❯</button>
+        <button @click="changeMonth(1)" class="btn btn-sm btn-outline-primary">❯</button>
       </div>
 
       <div class="calendar-grid">
@@ -116,6 +128,3 @@ const selectDate = (date) => {
   border-radius: 8px;
 }
 </style>
-
-/** 🚀 Next Steps Fetch past challenges from JSON Server (/challenges?date=selectedDate). Highlight
-today’s date differently. Make it fully responsive. */
