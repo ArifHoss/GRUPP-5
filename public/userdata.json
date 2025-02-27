@@ -7,9 +7,8 @@
       "mail": "kate@gmail.com",
       "password": "123456789",
       "profilePicUrl": null,
-      "ecoPoints": 45,
+      "ecoPoints": 5,
       "completedTasks": [
-        5,
         {
           "id": 6,
           "title": "Ät vegetariskt!",
@@ -26,9 +25,8 @@
       "mail": "namn@mail.com",
       "password": "1234567",
       "profilePicUrl": null,
-      "ecoPoints": 20,
+      "ecoPoints": 5,
       "completedTasks": [
-        2,
         {
           "id": 3,
           "title": "Spara vatten!",
@@ -37,6 +35,36 @@
         }
       ],
       "registrationDate": "Tue Feb 25 2025"
+    },
+    {
+      "id": "e80d",
+      "firstName": "Maria",
+      "lastName": "E",
+      "mail": "maria@mail.com",
+      "password": "maria",
+      "profilePicUrl": null,
+      "ecoPoints": 5,
+      "completedTasks": [
+        {
+          "id": 1,
+          "title": "Skräppatrullen!",
+          "description": "Det ligger så mycket skräp ute och skräpar i naturen. Hjälp haven och djuren genom att plocka upp ett skräp och återvinn det.",
+          "image": "challengeIllustrations/garbage.svg",
+          "date": "Thu Feb 27 2025"
+        }
+      ],
+      "registrationDate": "Thu Feb 27 2025"
+    },
+    {
+      "id": "9379",
+      "firstName": "hi",
+      "lastName": "hi",
+      "mail": "hi@mail.com",
+      "password": "hi12345",
+      "profilePicUrl": null,
+      "ecoPoints": 0,
+      "completedTasks": [],
+      "registrationDate": "Thu Feb 27 2025"
     }
   ]
 }
