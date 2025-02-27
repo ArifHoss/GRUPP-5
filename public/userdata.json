@@ -7,9 +7,31 @@
       "mail": "kate@gmail.com",
       "password": "123456",
       "profilePicUrl": null,
-      "ecoPoints": 0,
-      "completedTasks": [],
-      "registrationDate": "Tue Feb 22 2025"
+      "ecoPoints": 35,
+      "completedTasks": [
+        {
+          "id": 1,
+          "title": "Skräppatrullen!",
+          "description": "Det ligger så mycket skräp ute och skräpar i naturen. Hjälp haven och djuren genom att plocka upp ett skräp och återvinn det.",
+          "image": "challengeIllustrations/garbage.svg",
+          "dateCompleted": "2025-02-10"
+        },
+        {
+          "id": 4,
+          "title": "Cykla eller åk kollektivt!",
+          "description": "Lämna bilen hemma idag! Ta cykeln eller åk med kollektivtrafiken – ett enkelt val som gör gott för både planeten och din plånbok.",
+          "image": "challengeIllustrations/bus.svg",
+          "dateCompleted": "2025-02-14"
+        },
+        {
+          "id": 6,
+          "title": "Ät vegetariskt!",
+          "description": "Utmana dig själv med en köttfri dag! Vegetarisk mat är bra för både miljön och din kropp.",
+          "image": "challengeIllustrations/mushrooms.svg",
+          "dateCompleted": "2025-02-20"
+        }
+      ],
+      "registrationDate": "2025-02-22"
     },
     {
       "id": "2",
@@ -18,9 +40,31 @@
       "mail": "namn@mail.com",
       "password": "1234567",
       "profilePicUrl": null,
-      "ecoPoints": 0,
-      "completedTasks": [],
-      "registrationDate": "Tue Feb 25 2025"
+      "ecoPoints": 50,
+      "completedTasks": [
+        {
+          "id": 2,
+          "title": "Minska plast!",
+          "description": "Plast är en stor miljöbov. Byt ut plastpåsen mot en tygpåse idag och gör skillnad!",
+          "image": "challengeIllustrations/bag.svg",
+          "dateCompleted": "2025-02-12"
+        },
+        {
+          "id": 5,
+          "title": "Källsortera!",
+          "description": "Idag är det dags att sortera soporna rätt. Glas, papper, plast – allt på sin plats.",
+          "image": "public/challengeIllustrations/bins.svg",
+          "dateCompleted": "2025-02-15"
+        },
+        {
+          "id": 7,
+          "title": "Spara el!",
+          "description": "Släck lamporna i rum du inte använder och minska din elförbrukning. Små steg gör stor skillnad!",
+          "image": "challengeIllustrations/lamps.svg",
+          "dateCompleted": "2025-02-21"
+        }
+      ],
+      "registrationDate": "2025-02-25"
     }
   ]
 }
