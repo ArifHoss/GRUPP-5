@@ -2,11 +2,33 @@
 import { ref, computed } from 'vue'
 import Navbar from '@/components/Navbar.vue'
 import DateDisplay from '@/components/dateDisplay.vue'
+import { useUserStore } from '@/stores/userStore.js'
 
+const userStore = useUserStore()
 const today = new Date()
 const selectedDate = ref(null)
 const currentMonth = ref(today.getMonth())
 const currentYear = ref(today.getFullYear())
+
+// Get completed task from logged in user
+const completedTasks = computed(() => {
+  if (!userStore.currentUser || !selectedDate.value) return []
+  return userStore.currentUser.completedTasks.filter(
+    (task) => task.dateCompleted === selectedDate.value, // Ensure the formats match!
+  )
+})
+
+// Function to remove a task from the list
+// const removeTask = (taskId) => {
+//   if (!userStore.currentUser) return
+
+//   userStore.currentUser.completedTasks = userStore.currentUser.completedTasks.filter(
+//     (task) => task.id !== taskId,
+//   )
+
+//   // Update the backend with the new task list
+//   userStore.updateUserInBe(userStore.currentUser, userStore.currentUser.id)
+// }
 
 // Update the month while handling year changes
 const changeMonth = (step) => {
@@ -35,6 +57,11 @@ const daysInMonth = computed(() => {
 const selectDate = (date) => {
   selectedDate.value = date.toDateString()
 }
+
+// const selectDate = (date) => {
+//   selectedDate.value = date.toISOString().split('T')[0] // Convert to 'YYYY-MM-DD'
+// }
+
 </script>
 
 <template>
@@ -74,7 +101,13 @@ const selectDate = (date) => {
 
     <div v-if="selectedDate" class="selected-date">
       <h4>Utmaningar för: {{ selectedDate }}</h4>
-      <p>Inga utmaningar ännu, lägg till i backend</p>
+      <ul v-if="completedTasks.length > 0">
+        <li v-for="task in completedTasks" :key="task.id">
+          <strong>{{ task.title }}</strong
+          >: {{ task.description }}
+        </li>
+      </ul>
+      <p v-else>Inga utmaningar genomförda på detta datum.</p>
     </div>
 
     <Navbar page="archive"></Navbar>
