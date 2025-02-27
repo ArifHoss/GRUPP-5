@@ -91,7 +91,7 @@ onMounted(async () => {
 
 <template>
 
-  <main class="challenge-container">
+<main :class="['challenge-container', { 'confetti-bg': isChallengeCompleted }]">
     <!-- Visa header endast om utmaningen inte är avklarad -->
     <div class="header" v-if="!isChallengeCompleted">
       <h1 class="h1">Dagens utmaning</h1>
@@ -208,6 +208,12 @@ main {
   height: 35px;
   font-weight: 700;
   cursor: pointer;
+}
+
+.confetti-bg {
+  background-image: url('/UiImages/Confetti.svg');
+  background-repeat: repeat;
+  background-size: auto;
 }
 
 .good-job {
