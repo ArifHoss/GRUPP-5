@@ -7,10 +7,15 @@
       "mail": "kate@gmail.com",
       "password": "123456789",
       "profilePicUrl": null,
-      "ecoPoints": 10,
+      "ecoPoints": 45,
       "completedTasks": [
         5,
-        6
+        {
+          "id": 6,
+          "title": "Ät vegetariskt!",
+          "description": "Utmana dig själv med en köttfri dag! Vegetarisk mat är bra för både miljön och din kropp.",
+          "image": "challengeIllustrations/mushrooms.svg"
+        }
       ],
       "registrationDate": "Tue Feb 22 2025"
     },
@@ -21,9 +26,15 @@
       "mail": "namn@mail.com",
       "password": "1234567",
       "profilePicUrl": null,
-      "ecoPoints": 5,
+      "ecoPoints": 20,
       "completedTasks": [
-        2
+        2,
+        {
+          "id": 3,
+          "title": "Spara vatten!",
+          "description": "Vatten är livsviktigt. Stäng av kranen medan du borstar tänderna och spara på våra resurser.",
+          "image": "challengeIllustrations/waterdrop.svg"
+        }
       ],
       "registrationDate": "Tue Feb 25 2025"
     }

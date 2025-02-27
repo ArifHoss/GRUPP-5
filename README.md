@@ -138,18 +138,18 @@ Open your browser and navigate to http://localhost:5173 (the URL may vary if con
 
 This project uses two JSON files located in the public folder:
 
-challenges.json
-userdata.json
+challenges.json fetches read only data from public folder
+userdata.json needs json-server to post new users
 These files serve as data sources for the project. Start the server with a command such as:
 
 ```
-npx json-server --watch public/challenges.json
+npx json-server --watch public/userdata.json
 ```
 
 or
 
 ```
-npm json-server --watch public/challenges.json
+npm json-server --watch public/userdata.json
 ```
 
 Open your browser and navigate to http://localhost:3000 to see json-server data.

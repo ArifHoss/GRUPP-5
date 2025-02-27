@@ -2,9 +2,11 @@
 import { onMounted, ref, computed } from 'vue'
 import { useChallengeStore } from '@/stores/challengeStore'
 import { useUserStore } from '@/stores/userStore'
+import { useRouter } from 'vue-router' //Saga
 import Navbar from '@/components/Navbar.vue'
 import DateDisplay from '@/components/dateDisplay.vue'
 
+const router = useRouter()
 const challengeStore = useChallengeStore()
 const userStore = useUserStore()
 const isLoading = ref(true)
@@ -13,22 +15,30 @@ const isLoading = ref(true)
 const isChallengeCompleted = computed(() => {
   const currentUser = userStore.currentUser
   const currentChallengeId = challengeStore.todaysChallenge?.id
-  if (currentUser && currentChallengeId) {
-    return currentUser.completedTasks && currentUser.completedTasks.includes(currentChallengeId)
+  const currentChallenge = challengeStore.todaysChallenge
+  if (currentUser && currentChallenge) { //Sagas kod här
+    return currentUser.completedTasks && currentUser.completedTasks.some(element => element.id === currentChallengeId)
   }
   return false
 })
 
+
+
+
 const completeChallenge = () => {
   const currentUser = userStore.currentUser
   const currentChallengeId = challengeStore.todaysChallenge?.id
+
+  //Sagas kod här, skickar in dagens datum i challengen
+  const currentChallenge = challengeStore.todaysChallenge
+  currentChallenge.date = new Date().toDateString
 
   // Förhindra dubbelslutförande om redan avklarad
   if (
     currentUser &&
     currentChallengeId &&
     currentUser.completedTasks &&
-    currentUser.completedTasks.includes(currentChallengeId)
+    currentUser.completedTasks.some(element => element.id === currentChallengeId) //Bytte från currenChallengeId till Current challenge
   ) {
     console.log('Challenge already completed for today.')
     return
@@ -40,10 +50,12 @@ const completeChallenge = () => {
     if (!currentUser.completedTasks) {
       currentUser.completedTasks = []
     }
-    if (!currentUser.completedTasks.includes(currentChallengeId)) {
-      currentUser.completedTasks.push(currentChallengeId)
+    if (!currentUser.completedTasks.includes(currentChallenge)) {//Bytte från challengeId till hela challenge objektet /Saga
+      currentUser.completedTasks.push(currentChallenge) //Bytte från challengeId till hela challenge objektet /Saga
     }
     userStore.updateUserInBe(currentUser, currentUser.id)
+    localStorage.setItem('currentUser', JSON.stringify(currentUser)) //Uppdatera också i local storage så att ifall sidan laddas om resettas inte användaren?Saga
+    router.go()//Laddar om sidan
   }
 }
 
@@ -54,11 +66,13 @@ onMounted(async () => {
 
     // Hämta inloggad användare från userStore (eller från localStorage om ej satt)
     let currentUser = userStore.currentUser
+    console.log(currentUser)
     if (!currentUser) {
       const stored = localStorage.getItem('currentUser')
       if (stored) {
         currentUser = JSON.parse(stored)
         userStore.currentUser = currentUser
+        console.log(currentUser)
       }
     }
     if (currentUser) {
@@ -72,9 +86,11 @@ onMounted(async () => {
     isLoading.value = false
   }
 })
+
 </script>
 
 <template>
+
   <main class="challenge-container">
     <!-- Visa header endast om utmaningen inte är avklarad -->
     <div class="header" v-if="!isChallengeCompleted">
@@ -88,11 +104,7 @@ onMounted(async () => {
     <div v-else>
       <!-- Om utmaningen är slutfört visas skärmen "Bra jobbat" -->
       <div v-if="isChallengeCompleted" class="good-job">
-        <img
-          src="../assets/happyPlanet-transparent-bg.svg"
-          alt="Happy planet"
-          class="good-job-image"
-        />
+        <img src="../assets/happyPlanet-transparent-bg.svg" alt="Happy planet" class="good-job-image" />
         <h2 class="h2">Bra jobbat!</h2>
         <p class="p-medium">
           Belöningen har tilldelats!<br />
@@ -102,11 +114,7 @@ onMounted(async () => {
 
       <div v-else>
         <div v-if="challengeStore.todaysChallenge" class="challenge">
-          <img
-            :src="challengeStore.todaysChallenge.image"
-            alt="Utmaningsbild"
-            class="challenge-image"
-          />
+          <img :src="challengeStore.todaysChallenge.image" alt="Utmaningsbild" class="challenge-image" />
           <h2 class="h2">{{ challengeStore.todaysChallenge.title }}</h2>
           <p class="p-medium">{{ challengeStore.todaysChallenge.description }}</p>
         </div>

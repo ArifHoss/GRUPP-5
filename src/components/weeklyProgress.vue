@@ -1,5 +1,30 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useChallengeStore } from '@/stores/challengeStore';
+import { useUserStore } from '@/stores/userStore';
+
+const challengeStore = useChallengeStore;
+const userStore = useUserStore;
+
+let user = ref(null)
+let isFetched = ref(false)
+
+onMounted(() => {
+  user.value = userStore.currentUser;
+  //If userStore doesnt have a current user, get current user from local storage
+  if (user.value === null || user.value === undefined) {
+    user.value = JSON.parse(localStorage.getItem('currentUser'))
+  }
+
+  //If there's no user in local storage, user is logged out and will be rerouted to login page
+  if (user.value === null || user.value === undefined) {
+    router.push('/')
+  } else {
+    isFetched.value = true
+    console.log(user.value)
+  }
+
+})
 
 //Below is hardcoded mockdata for testing, add dynamic updates later
 
