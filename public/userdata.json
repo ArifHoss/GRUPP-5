@@ -7,9 +7,10 @@
       "mail": "kate@gmail.com",
       "password": "123456",
       "profilePicUrl": null,
-      "ecoPoints": 5,
+      "ecoPoints": 10,
       "completedTasks": [
-        5
+        5,
+        6
       ],
       "registrationDate": "Tue Feb 22 2025"
     },
