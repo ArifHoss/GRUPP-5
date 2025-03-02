@@ -31,7 +31,8 @@ onMounted(() => {
       <div id="headerTextWrapper">
         <h2 class="h2">Hej {{ user.firstName }}</h2>
         <p class="p-medium">Välkommen tillbaka!</p>
-        <button class="btn-primary">Kontoinställningar</button>
+        <router-link to="/kontoinstallningar"><button class="btn-primary">Kontoinställningar</button></router-link>
+        
       </div>
     </div>
 
