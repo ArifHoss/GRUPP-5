@@ -51,6 +51,11 @@ const router = createRouter({
       name: 'successPassword',
       component: () => import('../views/SuccessPassword.vue'),
     },
+    {
+      path: '/setting',
+      name: 'setting',
+      component: () => import('../views/SettingView.vue'),
+    },
   ],
 })
 
