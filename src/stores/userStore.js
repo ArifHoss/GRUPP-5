@@ -92,8 +92,33 @@ export const useUserStore = defineStore('userStore', {
     },
 
     logout() {
-      this.currentUser.value = null
-      localStorage.removeItem('user')
+      this.currentUser = null
+      localStorage.removeItem('currentUser')
+      3
+    },
+
+    async deleteUser() {
+      if (!this.currentUser) return false
+
+      try {
+        const response = await fetch(`http://localhost:3000/users/${this.currentUser.id}`, {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+        })
+
+        if (!response.ok) throw new Error('Failed to delete user')
+
+        this.users = this.users.filter((user) => user.id !== this.currentUser.id)
+
+        localStorage.removeItem('currentUser')
+        this.currentUser = null
+
+        console.log('User deleted successfully')
+        return true
+      } catch (error) {
+        console.error('Error', error)
+        return false
+      }
     },
   },
 })

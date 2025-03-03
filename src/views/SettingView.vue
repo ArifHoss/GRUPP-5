@@ -1,12 +1,18 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/userStore'
 import Navbar from '@/components/Navbar.vue'
 
 // Modal - confirmation popup
 const showLogoutPopup = ref(false)
-const router = useRouter()
+const showDeletePopup = ref(false)
+const showDeleteResult = ref(false)
 
+const router = useRouter()
+const userStore = useUserStore()
+
+// Logout Modal - confirmation popup
 // Popup showup when click
 const logout = () => {
   showLogoutPopup.value = true
@@ -15,6 +21,7 @@ const logout = () => {
 // If confirm to logout push to login page
 const confirmLogout = () => {
   showLogoutPopup.value = false
+  userStore.logout() // Clear user data
   router.push('/')
 }
 
@@ -22,20 +29,46 @@ const confirmLogout = () => {
 const cancelLogout = () => {
   showLogoutPopup.value = false
 }
+
+// Delete account Modal - confirmation popup
+// Popup showup when click
+const deleteAccount = () => {
+  showDeletePopup.value = true
+}
+
+// If confirm to delete push to login page
+const confirmDelete = async () => {
+  const success = await userStore.deleteUser()
+  if (success) {
+    showDeletePopup.value = false
+    showDeleteResult.value = true
+  }
+}
+
+// Final ask
+const confirmFinalDelete = () => {
+  showDeletePopup.value = showDeleteResult.value = false
+  router.push('/')
+}
+
+// If not stay remaining to current page
+const cancelDelete = () => {
+  showDeletePopup.value = false
+}
 </script>
 
 <template>
   <div class="setting-container">
     <img src="@/assets/images/happy-earth.png" alt="Happy Planet" class="earth-image" />
 
-    <h1>Förnamn Efternamn</h1>
-    <h2>Email</h2>
+    <h1>{{ userStore.currentUser?.firstName }} {{ userStore.currentUser?.lastName }}</h1>
+    <h2>{{ userStore.currentUser?.mail }}</h2>
 
-    <button @click="Update - password" class="update-password-button">Uppdateara lösenord</button>
+    <button @click="updatePassword" class="update-password-button">Uppdateara lösenord</button>
 
-    <button @click="logout" class="Logout-button">Logga ut</button>
+    <button @click="logout" class="logout-button">Logga ut</button>
 
-    <h2 class="delete-account">Radera konto</h2>
+    <h2 class="delete-account" @click="deleteAccount">Radera konto</h2>
 
     <!-- Logout confirmation popup -->
     <div v-if="showLogoutPopup" class="modal-overlay">
@@ -44,6 +77,27 @@ const cancelLogout = () => {
         <div class="button-container">
           <button @click="confirmLogout" class="confirm-button">Ja</button>
           <button @click="cancelLogout" class="cancel-button">Nej</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deleat account confirmation popup -->
+    <div v-if="showDeletePopup" class="modal-overlay">
+      <div class="modal">
+        <p>Är du säker på att du vill <strong>radera</strong> denna konto?</p>
+        <div class="button-container">
+          <button @click="confirmDelete" class="confirm-button">Ja</button>
+          <button @click="cancelDelete" class="cancel-button">Nej</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final confirmation popup -->
+    <div v-if="showDeleteResult" class="modal-overlay">
+      <div class="modal">
+        <p><strong>Ditt konto har raderats!</strong></p>
+        <div class="button-container">
+          <button @click="confirmFinalDelete" class="confirm-button">OK</button>
         </div>
       </div>
     </div>
@@ -110,7 +164,7 @@ h2 {
   background-color: #a5c261;
 }
 
-.Logout-button {
+.logout-button {
   font-size: 14px;
   font-family: 'Comfortaa', serif;
   font-weight: bold;
@@ -125,7 +179,7 @@ h2 {
   transition: background-color 0.3s ease;
 }
 
-.Logout-button:hover {
+.logout-button:hover {
   background-color: #fbb3ab;
 }
 
