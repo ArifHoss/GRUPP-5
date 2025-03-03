@@ -85,11 +85,7 @@ const cancelDelete = () => {
     <div class="email-container">
       <h2 v-if="userStore.currentUser">
         {{ userStore.currentUser.mail }}
-        <img
-          src="\icons\setting-mark.png"
-          alt="setting-mark"
-          class="setting-mark-img"
-        /><router-link to="/settings">
+        <router-link to="/settings">
           <img src="/icons/setting-mark.png" alt="setting-mark" class="setting-mark-img" />
         </router-link>
       </h2>
