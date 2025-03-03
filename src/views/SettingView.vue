@@ -75,7 +75,7 @@ const cancelDelete = () => {
     <h1 v-if="userStore.currentUser">
       {{ userStore.currentUser.firstName }} {{ userStore.currentUser.lastName }}
     </h1>
-    <h1 v-else>Laddar...</h1>
+    <h1 v-else>...</h1>
 
     <h2 v-if="userStore.currentUser">
       {{ userStore.currentUser.mail }}
