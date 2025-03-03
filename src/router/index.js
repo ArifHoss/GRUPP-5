@@ -62,6 +62,11 @@ const router = createRouter({
       name: 'setting',
       component: () => import('../views/SettingView.vue'),
     },
+    {
+      path: '/updatePassword',
+      name: 'updatePassword',
+      component: () => import('../views/updatePassword.vue'),
+    },
   ],
 })
 

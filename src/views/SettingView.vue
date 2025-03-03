@@ -12,6 +12,11 @@ const showDeleteResult = ref(false)
 const router = useRouter()
 const userStore = useUserStore()
 
+// Update password
+const navigateToUpdatePassword = () => {
+  router.push('/updatePassword')
+}
+
 // Logout Modal - confirmation popup
 // Popup showup when click
 const logout = () => {
@@ -64,7 +69,9 @@ const cancelDelete = () => {
     <h1>{{ userStore.currentUser?.firstName }} {{ userStore.currentUser?.lastName }}</h1>
     <h2>{{ userStore.currentUser?.mail }}</h2>
 
-    <button @click="updatePassword" class="update-password-button">Uppdateara lösenord</button>
+    <button @click="navigateToUpdatePassword" class="update-password-button">
+      Uppdateara lösenord
+    </button>
 
     <button @click="logout" class="logout-button">Logga ut</button>
 
