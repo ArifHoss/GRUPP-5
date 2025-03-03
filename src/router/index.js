@@ -37,6 +37,12 @@ const router = createRouter({
       component: () => import('../views/ChallengeView.vue'),
     },
     {
+      path: '/accountsetting',
+      name: 'accountsetting',
+      component: () => import('../views/AccountSetting.vue'),
+    },
+    
+    {
       path: '/archive',
       name: 'archive',
       component: () => import('../views/ArchiveView.vue'),

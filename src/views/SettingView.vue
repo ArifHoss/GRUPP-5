@@ -73,9 +73,10 @@ const cancelDelete = () => {
     <img src="@/assets/images/happy-earth.png" alt="Happy Planet" class="earth-image" />
 
     <div class="name-container">
+      <router-link to="/accountsetting">Test AccountSetting</router-link>
       <h1 v-if="userStore.currentUser">
         {{ userStore.currentUser.firstName }} {{ userStore.currentUser.lastName }}
-        <router-link to="/settings">
+        <router-link to="/accountsetting">
           <img src="/icons/setting-mark.png" alt="setting-mark" class="setting-mark-img" />
         </router-link>
       </h1>
@@ -85,7 +86,7 @@ const cancelDelete = () => {
     <div class="email-container">
       <h2 v-if="userStore.currentUser">
         {{ userStore.currentUser.mail }}
-        <router-link to="/settings">
+        <router-link to="/accountsetting">
           <img src="/icons/setting-mark.png" alt="setting-mark" class="setting-mark-img" />
         </router-link>
       </h2>
