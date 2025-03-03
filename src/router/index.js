@@ -22,6 +22,12 @@ const router = createRouter({
       component: () => import('../views/ForgotPasswordView.vue'),
     },
     {
+      path: '/kontoinställningar',
+      name: 'kontoinställningar',
+      component: () => import('../views/KontoinställningarView.vue'),
+    },
+    
+    {
       path: '/onboarding',
       name: 'onboarding',
       component: () => import('../views/OnboardingView.vue'),

@@ -7,8 +7,16 @@
       "mail": "maria@mail.com",
       "password": "maria",
       "profilePicUrl": null,
-      "ecoPoints": 10,
+      "ecoPoints": 20,
       "completedTasks": [
+        {
+          "id": 2,
+          "dateCompleted": "2025-02-28"
+        },
+        {
+          "id": 4,
+          "dateCompleted": "2025-03-02"
+        }
       ],
       "registrationDate": "Thu Feb 27 2025"
     },
@@ -19,8 +27,13 @@
       "mail": "hi@mail.com",
       "password": "hi12345",
       "profilePicUrl": null,
-      "ecoPoints": 0,
-      "completedTasks": [],
+      "ecoPoints": 5,
+      "completedTasks": [
+        {
+          "id": 4,
+          "dateCompleted": "2025-03-02"
+        }
+      ],
       "registrationDate": "Thu Feb 27 2025"
     }
   ]
