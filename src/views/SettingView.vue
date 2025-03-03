@@ -72,14 +72,28 @@ const cancelDelete = () => {
   <div class="setting-container">
     <img src="@/assets/images/happy-earth.png" alt="Happy Planet" class="earth-image" />
 
-    <h1 v-if="userStore.currentUser">
-      {{ userStore.currentUser.firstName }} {{ userStore.currentUser.lastName }}
-    </h1>
-    <h1 v-else>...</h1>
+    <div class="name-container">
+      <h1 v-if="userStore.currentUser">
+        {{ userStore.currentUser.firstName }} {{ userStore.currentUser.lastName }}
+        <router-link to="/settings">
+          <img src="/icons/setting-mark.png" alt="setting-mark" class="setting-mark-img" />
+        </router-link>
+      </h1>
+      <h1 v-else>...</h1>
+    </div>
 
-    <h2 v-if="userStore.currentUser">
-      {{ userStore.currentUser.mail }}
-    </h2>
+    <div class="email-container">
+      <h2 v-if="userStore.currentUser">
+        {{ userStore.currentUser.mail }}
+        <img
+          src="\icons\setting-mark.png"
+          alt="setting-mark"
+          class="setting-mark-img"
+        /><router-link to="/settings">
+          <img src="/icons/setting-mark.png" alt="setting-mark" class="setting-mark-img" />
+        </router-link>
+      </h2>
+    </div>
 
     <button @click="navigateToUpdatePassword" class="update-password-button">
       Uppdateara lösenord
@@ -270,5 +284,10 @@ h2 {
   display: flex;
   justify-content: center;
   gap: 20px;
+}
+
+/* Img */
+.setting-mark-img {
+  width: 18px;
 }
 </style>
