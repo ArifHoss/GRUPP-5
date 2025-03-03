@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
 import Navbar from '@/components/Navbar.vue'
@@ -11,6 +11,11 @@ const showDeleteResult = ref(false)
 
 const router = useRouter()
 const userStore = useUserStore()
+
+// Fetch user data
+onMounted(async () => {
+  await userStore.fetchUsers()
+})
 
 // Update password
 const navigateToUpdatePassword = () => {
@@ -52,7 +57,8 @@ const confirmDelete = async () => {
 
 // Final ask
 const confirmFinalDelete = () => {
-  showDeletePopup.value = showDeleteResult.value = false
+  showDeletePopup.value = false
+  showDeleteResult.value = false
   router.push('/')
 }
 
@@ -66,8 +72,14 @@ const cancelDelete = () => {
   <div class="setting-container">
     <img src="@/assets/images/happy-earth.png" alt="Happy Planet" class="earth-image" />
 
-    <h1>{{ userStore.currentUser?.firstName }} {{ userStore.currentUser?.lastName }}</h1>
-    <h2>{{ userStore.currentUser?.mail }}</h2>
+    <h1 v-if="userStore.currentUser">
+      {{ userStore.currentUser.firstName }} {{ userStore.currentUser.lastName }}
+    </h1>
+    <h1 v-else>Laddar...</h1>
+
+    <h2 v-if="userStore.currentUser">
+      {{ userStore.currentUser.mail }}
+    </h2>
 
     <button @click="navigateToUpdatePassword" class="update-password-button">
       Uppdateara lösenord
