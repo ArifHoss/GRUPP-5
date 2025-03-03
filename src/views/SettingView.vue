@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+import Navbar from '@/components/Navbar.vue'
+</script>
+
 <template>
   <div class="setting-container">
     <img src="@/assets/images/happy-earth.png" alt="Happy Planet" class="success-icon" />
@@ -12,5 +15,6 @@
 
     <p>Radera konto</p>
   </div>
+  <Navbar id="navBar" page="setting"></Navbar>
 </template>
 <style scoped></style>
