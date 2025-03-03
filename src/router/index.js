@@ -24,9 +24,9 @@ const router = createRouter({
     {
       path: '/kontoinställningar',
       name: 'kontoinställningar',
-      component: () => import('../views/KontoinställningarView.vue'),
+      component: () => import('../views/KontoInställningar.vue'),
     },
-    
+
     {
       path: '/onboarding',
       name: 'onboarding',
