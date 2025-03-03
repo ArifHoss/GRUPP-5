@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue'
+import { RouterLink } from 'vue-router'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const userEmail = ref('')
