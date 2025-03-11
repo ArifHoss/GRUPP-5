@@ -29,7 +29,6 @@ const next = () => {
   justify-content: center;
   min-height: 100vh;
   background-color: #fef7ee;
-
   background-image: url('/uiImages/Confetti.svg');
   background-size: cover;
 
