@@ -95,12 +95,17 @@
     {
       "id": "a825",
       "firstName": "Saga",
-      "lastName": "Test",
+      "lastName": "Saga",
       "mail": "saga@mail.com",
-      "password": "sagasaga",
+      "password": "1234567",
       "profilePicUrl": null,
-      "ecoPoints": 0,
-      "completedTasks": [],
+      "ecoPoints": 5,
+      "completedTasks": [
+        {
+          "id": 2,
+          "dateCompleted": "2025-03-11"
+        }
+      ],
       "registrationDate": "Mon Mar 10 2025"
     },
     {
